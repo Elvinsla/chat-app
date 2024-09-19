@@ -16,41 +16,30 @@ const SearchInput = () => {
 			return toast.error("Search term must be at least 3 characters long");
 		}
 
-		const conversation = conversations.find((c) => c.fullName.toLowerCase().includes(search.toLowerCase()));
+		const conversation = conversations.find((c) =>
+			c.fullName.toLowerCase().includes(search.toLowerCase())
+		);
 
 		if (conversation) {
 			setSelectedConversation(conversation);
 			setSearch("");
 		} else toast.error("No such user found!");
 	};
+
 	return (
-		<form onSubmit={handleSubmit} className='flex items-center gap-2'>
+		<form onSubmit={handleSubmit} className='flex items-center gap-2 w-full sm:w-auto'>
 			<input
 				type='text'
 				placeholder='Search…'
-				className='input input-bordered rounded-full'
+				className='input input-bordered rounded-full w-full sm:w-64'
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 			/>
-			<button type='submit' className='btn btn-circle bg-sky-500 text-white'>
-				<IoSearchSharp className='w-6 h-6 outline-none' />
+			<button type='submit' className='btn btn-circle bg-sky-500 text-white w-10 h-10 sm:w-12 sm:h-12'>
+				<IoSearchSharp className='w-5 h-5 sm:w-6 sm:h-6 outline-none' />
 			</button>
 		</form>
 	);
 };
+
 export default SearchInput;
-
-// STARTER CODE SNIPPET
-// import { IoSearchSharp } from "react-icons/io5";
-
-// const SearchInput = () => {
-// 	return (
-// 		<form className='flex items-center gap-2'>
-// 			<input type='text' placeholder='Search…' className='input input-bordered rounded-full' />
-// 			<button type='submit' className='btn btn-circle bg-sky-500 text-white'>
-// 				<IoSearchSharp className='w-6 h-6 outline-none' />
-// 			</button>
-// 		</form>
-// 	);
-// };
-// export default SearchInput;
